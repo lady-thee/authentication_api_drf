@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'auth_api.wsgi.application'
 
 
 
-CSRF_TRUSTED_ORIGINS = ['authenticationapidrf-production.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['http://authenticationapidrf-production.up.railway.app/']
 
 CSRF_COOKIE_SECURE = True
 
-CSRF_COOKIE_DOMAIN = 'authenticationapidrf-production.up.railway.app'
+CSRF_COOKIE_DOMAIN = 'http://authenticationapidrf-production.up.railway.app'
 
 
 # REST FRAMEWORK DEFAULT CLASSES
