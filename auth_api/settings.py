@@ -95,9 +95,12 @@ SECURE_HSTS_SECONDS = 3600
 
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-SECURE_HSTS_PRELOAD = True 
+SECURE_HSTS_PRELOAD = True
 
-CSRF_TRUSTED_ORIGINS = ['https://authenticationapidrf-production.up.railway.app/']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app', 'https://authenticationapidrf-production.up.railway.app']
 
 CSRF_COOKIE_SECURE = True
 

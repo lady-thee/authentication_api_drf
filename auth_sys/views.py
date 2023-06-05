@@ -24,6 +24,7 @@ class APIOverview(APIView):
         return Response(serializer.data)
 
 
+@api_view(['POST'])
 @csrf_exempt
 def loadSignup( request):
     if request.method == 'POST':
@@ -42,6 +43,8 @@ def loadSignup( request):
                 status=400
             )
 
+
+@api_view(['POST'])
 @csrf_exempt
 def loadLogin(request):
     if request.method == 'POST':
