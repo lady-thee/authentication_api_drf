@@ -36,7 +36,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOST = [
     '*',
-    'authenticationapidrf-production.up.railway.app'
+    'https://authenticationapidrf-production.up.railway.app/'
     
     ]
 
