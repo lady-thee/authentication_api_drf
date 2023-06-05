@@ -1,1 +1,1 @@
-web: gunicorn 'name-of-application.wsgi'
+web: py manage.py migrate && py manage.py collectstatic && gunicorn 'auth_api.wsgi'

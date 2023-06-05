@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,10 +22,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r+ht&xe9n_2+p#5cnss5f1bc_orj$*o86h1gw^57$$o3cb4zvl'
+# SECRET_KEY = 'django-insecure-r+ht&xe9n_2+p#5cnss5f1bc_orj$*o86h1gw^57$$o3cb4zvl'
+    
+# SECRET_KEY = '2&(=ib3a$(j^9chz=l+aw+d*q+u-i14f05*4o67k_t7z*5i9sp'
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','2&(=ib3a$(j^9chz=l+aw+d*q+u-i14f05*4o67k_t7z*5i9sp')
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOST = ['*']
 
@@ -47,12 +55,14 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'auth_api.urls'
@@ -75,7 +85,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'auth_api.wsgi.application'
 
+SESSION_COOKIE_SECURE = True
 
+SECURE_SSL_REDIRECT = True 
+
+SECURE_HSTS_SECONDS = 3600
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+SECURE_HSTS_PRELOAD = True 
 
 CSRF_TRUSTED_ORIGINS = ['https://authenticationapidrf-production.up.railway.app/']
 
@@ -120,6 +138,12 @@ DATABASES = {
         'PORT': '7865'
     }
 }
+
+# UPDATE DATABASE CONFIGURATION 
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
 
 #AUTH USER MODEL 
 
@@ -172,6 +196,8 @@ STATIC_URL = 'static/'
 
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
