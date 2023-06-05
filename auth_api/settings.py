@@ -34,7 +34,11 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','2&(=ib3a$(j^9chz=l+aw+d*q+u-i14
 # DEBUG = False
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOST = ['*']
+ALLOWED_HOST = [
+    '*',
+    'authenticationapidrf-production.up.railway.app'
+    
+    ]
 
 
 # Application definition
