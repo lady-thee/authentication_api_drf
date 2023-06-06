@@ -14,7 +14,7 @@ The API uses *TOKENS* not Sessions to store recent acitivity. Thanks to *djangor
 
 ## Requests Accepted 
 
-*GET* and *POST* requests are accepted only, for now. 
+*GET* and *POST* requests are accepted only, for now. GET to get the list of users signed in. POST to create user and login. 
 
 ## JSON Format
 
@@ -31,7 +31,10 @@ The format for the JSON key and value is as:
 
 The API is hosted on Railway. Use this link:
 
-*authenticationapidrf-production.up.railway.app/*
+*authenticationapidrf-production.up.railway.app/api/*
 
 
+
+## ADMIN PANEL
+Admin is currently signed in, but Django-Ajax code for allowing CSRF TOKEN is stated in django documentation. https://docs.djangoproject.com/en/4.2/howto/csrf/
 
